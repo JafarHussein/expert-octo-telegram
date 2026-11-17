@@ -24,6 +24,37 @@ class UserResponse(BaseModel):
     username:str
     email:str
     created_at:datetime
+    
+# This is the category create blueprint
+
+class CategoryCreate(BaseModel):
+    category_id:UUID=Field(default_factory=uuid4)
+    category_name:str
+    category_monthly_spend_limit:int
+    created_at:datetime
+    
+class CategoryUpdate(BaseModel):
+    category_name:Optional[str]=None
+    monthly_spend_limit:Optional[int]=None
+    
+class CategoryResponse(BaseModel):
+    id:UUID
+    user_id:UUID=Field(default_factory=uuid4)
+    category_name:str
+    monthly_spend_limit:int
+    
+class ExpenseCreate(BaseModel):
+    category_id:UUID=Field(default_factory=uuid4)
+    amount:float=Field(gt=0)
+    description:str
+    transaction_date:datetime
+    created_at:datetime
+    updated_at:datetime | None
+    
+# Now lets create the summaries needed
+
+
+    
 
 
     
